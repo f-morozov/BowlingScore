@@ -1,11 +1,16 @@
 package ru.hh.school;
 
-import junit.framework.TestCase;
+import org.junit.Test;
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-public class BowlingScoreTest extends TestCase {
+public class BowlingScoreTest {
 
+    @Test
     public void testRollLimits() throws Exception {
         BowlingScore score = new BowlingScore();
+
         assertFalse(score.addRoll(11));
         assertFalse(score.addRoll(-1));
         assertTrue(score.addRoll(0));
@@ -13,6 +18,7 @@ public class BowlingScoreTest extends TestCase {
         assertTrue(score.addRoll(5));
     }
 
+    @Test
     public void testFrameScoreLimit() throws Exception {
         BowlingScore score = new BowlingScore();
         assertTrue(score.addRoll(5));
@@ -20,6 +26,7 @@ public class BowlingScoreTest extends TestCase {
         assertTrue(score.addRoll(4));
     }
 
+    @Test
     public void testSimpleFrame() throws Exception {
         BowlingScore score = new BowlingScore();
         score.addRoll(4);
@@ -28,6 +35,7 @@ public class BowlingScoreTest extends TestCase {
         assertEquals(score.getFrameIndex(), 1);
     }
 
+    @Test
     public void testStrike() throws Exception {
         BowlingScore score = new BowlingScore();
         score.addRoll(10);
@@ -39,6 +47,7 @@ public class BowlingScoreTest extends TestCase {
         assertEquals(score.getScore(), 30);
     }
 
+    @Test
     public void testDoubleStrike() throws Exception {
         BowlingScore score = new BowlingScore();
         score.addRoll(10);
@@ -49,6 +58,7 @@ public class BowlingScoreTest extends TestCase {
         assertEquals(score.getScore(), 50);
     }
 
+    @Test
     public void testSpare() throws Exception {
         BowlingScore score = new BowlingScore();
         score.addRoll(9);
@@ -63,6 +73,7 @@ public class BowlingScoreTest extends TestCase {
         assertEquals(score.getScore(), 40);
     }
 
+    @Test
     public void testFrameCount() throws Exception {
         BowlingScore score = new BowlingScore();
         for(int i = 0; i < BowlingScore.numFrames; i++) {
@@ -74,6 +85,7 @@ public class BowlingScoreTest extends TestCase {
         assertEquals(score.getScore(), 50);
     }
 
+    @Test
     public void testLastFrameStrike() throws Exception {
         BowlingScore score = new BowlingScore();
         for(int i = 0; i < BowlingScore.numFrames - 1; i++) {
@@ -87,6 +99,7 @@ public class BowlingScoreTest extends TestCase {
         assertEquals(score.getScore(), 60);
     }
 
+    @Test
     public void testLastFrameDoubleStrike() throws Exception {
         BowlingScore score = new BowlingScore();
         for(int i = 0; i < BowlingScore.numFrames - 1; i++) {
@@ -100,6 +113,7 @@ public class BowlingScoreTest extends TestCase {
         assertEquals(score.getScore(), 70);
     }
 
+    @Test
     public void testLastFrameLimits() throws Exception {
         BowlingScore score = new BowlingScore();
         for(int i = 0; i < BowlingScore.numFrames - 1; i++) {
@@ -114,6 +128,7 @@ public class BowlingScoreTest extends TestCase {
         assertEquals(score.getScore(), 64);
     }
 
+    @Test
     public void testLastFrameSpare() throws Exception {
         BowlingScore score = new BowlingScore();
         for(int i = 0; i < BowlingScore.numFrames - 1; i++) {
@@ -127,6 +142,7 @@ public class BowlingScoreTest extends TestCase {
         assertEquals(score.getScore(), 60);
     }
 
+    @Test
     public void testMaxScore() throws Exception {
         BowlingScore score = new BowlingScore();
         for(int i = 0; i < BowlingScore.numFrames; i++) {
@@ -137,6 +153,7 @@ public class BowlingScoreTest extends TestCase {
         assertEquals(score.getScore(), 300);
     }
 
+    @Test
     public void testSampleGame() throws Exception {
         BowlingScore score = new BowlingScore();
         int[] rolls = {3, 5, 10, 4, 6, 7, 1, 0, 10, 2, 4, 10, 0, 1, 3, 5, 8, 2, 10};
